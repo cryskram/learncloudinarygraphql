@@ -9,7 +9,12 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@apollo/client": "^4.0.4",
+    "@graphql-yoga/node": "^3.9.1",
     "@prisma/client": "^6.15.0",
+    "cloudinary": "^2.7.0",
+    "graphql": "^16.11.0",
+    "graphql-tag": "^2.12.6",
     "next": "15.5.2",
     "react": "19.1.0",
     "react-dom": "19.1.0"
