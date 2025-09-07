@@ -1,26 +1,26 @@
 import { prisma } from "@/lib/prisma";
-import { createSchema, createYoga } from "@graphql-yoga/node";
+import { createSchema, createYoga } from "graphql-yoga";
 import gql from "graphql-tag";
 import { NextRequest } from "next/server";
 
 const schema = createSchema<{ request: NextRequest }>({
   typeDefs: gql`
-        type Post {
-            id: ID!
-            title: String!
-            content: String!
-            imageUrl String
-            createdAt: String!
-        }
+    type Post {
+      id: ID!
+      title: String!
+      content: String!
+      imageUrl: String
+      createdAt: String!
+    }
 
-        type Query {
-            posts: [Post!]!
-        }
+    type Query {
+      posts: [Post!]!
+    }
 
-        type Mutation {
-            createPost(title: String!, content: String!, imageUrl: String): Post!
-        }
-    `,
+    type Mutation {
+      createPost(title: String!, content: String!, imageUrl: String): Post!
+    }
+  `,
   resolvers: {
     Query: {
       posts: () => prisma.post.findMany({ orderBy: { createdAt: "desc" } }),
@@ -35,7 +35,12 @@ const schema = createSchema<{ request: NextRequest }>({
         }: { title: string; content: string; imageUrl: string }
       ) =>
         prisma.post.create({
-          data: { title, content, imageUrl, authorId: "xyz" }, // id will be added when auth is built?
+          data: {
+            title,
+            content,
+            imageUrl,
+            authorId: "688fa801966d68fde796767a",
+          }, // id will be added when auth is built?
         }),
     },
   },
